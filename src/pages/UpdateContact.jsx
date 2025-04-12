@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 export const UpdateContact = () => {
     const { id } = useParams();
-    const [currentContactInfo, setCurrentContactInfo] = useState({ name: "", phone: "", email: "", address: "" });
+    // const [currentContactInfo, setCurrentContactInfo] = useState({ name: "", phone: "", email: "", address: "" });
     const [newContactInfo, setNewContactInfo] = useState({ name: "", phone: "", email: "", address: "" });
     const { store, dispatch, updateContact, getContacts } = useGlobalReducer();
     const navigate = useNavigate();
@@ -15,11 +15,18 @@ export const UpdateContact = () => {
 
     useEffect(() => {
         console.log(store.contacts)
-        let currentContact = store.contacts?.filter((contact, index) => { return contact.id == id })
+        let currentContact = store.contacts?.filter(( contact ) => contact.id == id)
 
         if (currentContact.length === 1) {
-            setCurrentContactInfo(currentContact[0]);
-            setNewContactInfo(currentContact[0]);
+            setNewContactInfo({
+               
+                id: currentContact[0].id,   
+                name: currentContact[0].name,
+                phone: currentContact[0].phone,
+                email: currentContact[0].email,
+                address: currentContact[0].address
+
+            })
         }
     }, [store.contacts]);
 
@@ -85,7 +92,7 @@ export const UpdateContact = () => {
             <button
                 className='btn '
                 onClick={(e) => handleUpdateContact(e)}>
-                <ContactButton display={"Update Contact"} color={"orange"} />
+                {/* <ContactButton display={"Update Contact"} color={"orange"} /> */}
             </button>
         </div>
     );

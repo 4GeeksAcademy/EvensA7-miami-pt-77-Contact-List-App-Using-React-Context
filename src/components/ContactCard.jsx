@@ -3,37 +3,34 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from 'react-router-dom'
 import MoreInfoModal from './moreInfoModal.jsx';
 
-export default function ContactCard({ contact, pictureNumber }) {
-
-    const { store, dispatch, deleteContact } = useGlobalReducer()
-
+export default function ContactCard({ contact }) {
+    const { store, dispatch, deleteContact, updateContact } = useGlobalReducer()
     return (
-        <div>
-            <div className="card mx-2" style={{ "width": "18rem" }}>
 
-                <img src={`https://randomuser.me/api/portraits/lego/${pictureNumber}.jpg`} className="card-img-top" alt="Profile" />
+        <div className="border p-2 mx-2 row" >
+            <div className='col-2'>
+                <img src={`https://picsum.photos/200`} className="card-img-top rounded-circle" alt="Profile" />
+            </div>
+            <div className="col-6 text-start">
 
-                <div className="card-body">
 
-                    <h5 className="card-title">{contact.name}</h5>
+                <h5 className="card-title">{contact.name}</h5>
+                <p className="card-text">{contact.phone}</p>
+                <p className="card-text">{contact.email}</p>
+                <p className="card-text">{contact.address}</p>
 
-                    <p className="card-text">{contact.phone}</p>
 
-                    <div className="btn-group btn-group-sm">
-                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target={`#moreInfoModal${contact.id}`}>
-                            ➕
-                        </button>
-
-                        <div className="modal fade" id={`moreInfoModal${contact.id}`} tabIndex="-1" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
-                            <MoreInfoModal contact={contact} pictureNumber={pictureNumber} />
-                        </div>
-
-                        <Link to={`update/${contact.id}`} className="link-light btn btn-warning">✏️</Link>
-
-                        <span className="btn btn-warning" onClick={() => deleteContact(contact.id)}>🗑️</span>
-                    </div>
+            </div>
+            <div className="btn-group btn-group-sm col-4">
+                <div className="modal fade" id={`moreInfoModal${contact.id}`} tabIndex="-1" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+                    <MoreInfoModal contact={contact} />
                 </div>
+                <Link to={`update/${contact.id}`} className="link-light btn btn-warning"><i class="fa-solid fa-pencil"></i></Link>
+                <span className="btn btn-warning" onClick={() => deleteContact(contact.id)}><i class="fa-solid fa-trash"></i></span>
             </div>
         </div>
+
+
+
     )
 }

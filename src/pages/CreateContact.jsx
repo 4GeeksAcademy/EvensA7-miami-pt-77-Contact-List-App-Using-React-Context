@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const CreateContact = () => {
 
@@ -18,7 +19,7 @@ export const CreateContact = () => {
             return;
         }
 
-        await postContact(dispatch, contact);
+        await postContact( contact );
 
         navigate("/");
     };
@@ -29,8 +30,8 @@ export const CreateContact = () => {
             {/* Name input field */}
             <div className="input-group mb-3">
                 <span className="input-group-text">Name</span>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     className="form-control"
                     value={contact.name}
                     onChange={(e) => setContact({ ...contact, name: e.target.value })}
@@ -40,20 +41,20 @@ export const CreateContact = () => {
             {/* Phone input field */}
             <div className="input-group mb-3">
                 <span className="input-group-text">Phone</span>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     className="form-control"
                     value={contact.phone}
                     onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-                />        
+                />
             </div>
 
             {/* Email input field */}
             <div className="input-group mb-3">
                 <span className="input-group-text">Email</span>
-                <input 
-                    type="text" 
-                    className="form-control" 
+                <input
+                    type="text"
+                    className="form-control"
                     placeholder="Recipient's email"
                     value={contact.email}
                     onChange={(e) => setContact({ ...contact, email: e.target.value })}
@@ -63,8 +64,8 @@ export const CreateContact = () => {
             {/* Address input field */}
             <div className="input-group mb-3">
                 <span className="input-group-text">Address</span>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     className="form-control"
                     value={contact.address}
                     onChange={(e) => setContact({ ...contact, address: e.target.value })}
@@ -72,12 +73,13 @@ export const CreateContact = () => {
             </div>
 
             {/* Submit button: Calls handleCreateContact function when clicked */}
-            <button 
-                className='btn'
+            <button
+                className='btn btn-primary'
                 onClick={(e) => handleCreateContact(e)}
             >
-                <ContactButton display={"Add Contact"} color={"blue"}/>
+                Save
             </button>
+            <Link to="/">or get back to Contacts</Link>
         </div>
     );
 }

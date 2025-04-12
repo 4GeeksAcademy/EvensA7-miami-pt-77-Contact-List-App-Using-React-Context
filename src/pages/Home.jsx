@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import ContactCard from "../components/ContactCard.jsx";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -18,15 +19,17 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-4 w-100">
-			<div className="d-flex flex-wrap justify-content-center">
+			<Link to="/create" className="d-flex justify-content-end">
+				<button className="btn btn-success ">Add New Contact</button>
+			</Link>
+			<div className="container">
 
 				{contacts.length > 0 ? contacts.map((contact, index) => {
-					
+
 					return (
 						<ContactCard
 							key={contact.id}
 							contact={contact}
-							pictureNumber={pictureNumber}
 						/>
 					)
 				})
