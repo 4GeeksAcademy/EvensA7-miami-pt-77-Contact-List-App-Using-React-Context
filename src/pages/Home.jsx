@@ -10,8 +10,8 @@ export const Home = () => {
 	const [contacts, setContacts] = useState([]);
 
 	useEffect(() => {
-		fetchAgenda();
-	}, []);
+		dispatch(fetchAgenda());
+	}, [dispatch]);
 
 	useEffect(() => {
 		setContacts(store.contacts);

@@ -3,7 +3,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 export const UpdateContact = () => {
-    const { id } = useParams();
+    const { theId } = useParams();
     // const [currentContactInfo, setCurrentContactInfo] = useState({ name: "", phone: "", email: "", address: "" });
     const [newContactInfo, setNewContactInfo] = useState({ name: "", phone: "", email: "", address: "" });
     const { store, dispatch, updateContact, getContacts } = useGlobalReducer();
@@ -15,7 +15,7 @@ export const UpdateContact = () => {
 
     useEffect(() => {
         console.log(store.contacts)
-        let currentContact = store.contacts?.filter(( contact ) => contact.id == id)
+        let currentContact = store.contacts?.filter(( contact ) => contact.id == theId)
 
         if (currentContact.length === 1) {
             setNewContactInfo({
@@ -41,7 +41,7 @@ export const UpdateContact = () => {
     
             {/* Name input */}
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Name</span>
+                <span className="input-group-text" theId="inputGroup-sizing-default">Name</span>
                 <input
                     type="text"
                     className="form-control"
@@ -53,7 +53,7 @@ export const UpdateContact = () => {
     
             {/* Phone input */}
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                <span className="input-group-text" theId="inputGroup-sizing-default">Phone</span>
                 <input
                     type="text"
                     className="form-control"
@@ -65,7 +65,7 @@ export const UpdateContact = () => {
     
             {/* Email input */}
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Email</span>
+                <span className="input-group-text" theId="inputGroup-sizing-default">Email</span>
                 <input
                     type="text"
                     className="form-control"
@@ -78,7 +78,7 @@ export const UpdateContact = () => {
     
             {/* Address input */}
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Address</span>
+                <span className="input-group-text" theId="inputGroup-sizing-default">Address</span>
                 <input
                     type="text"
                     className="form-control"
